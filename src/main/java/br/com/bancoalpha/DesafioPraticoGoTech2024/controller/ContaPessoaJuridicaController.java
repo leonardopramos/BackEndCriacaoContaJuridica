@@ -20,5 +20,11 @@ public class ContaPessoaJuridicaController {
         contaPessoaJuridicaService.persistePessoaJuridica(contaPessoaJuridica);
         return ResponseEntity.ok("Solicitação enviada com sucesso!");
     }
+    @GetMapping("/login")
+    public ResponseEntity login(@RequestParam String cnpj,String senha){
+        if(contaPessoaJuridicaService.login(cnpj,senha)) return ResponseEntity.ok("Login efetuado com sucesso!");
+        return ResponseEntity.notFound().build();
+    }
+
 
 }

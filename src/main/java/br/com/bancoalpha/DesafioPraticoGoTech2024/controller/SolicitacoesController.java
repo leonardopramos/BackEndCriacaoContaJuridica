@@ -25,8 +25,8 @@ public class SolicitacoesController {
         contaPessoaJuridicaService.cancelaSolicitacao(id);
         return ResponseEntity.ok("Solicitação Cancelada.");
     }
-    @GetMapping("/status/{id}")
-    public ResponseEntity acompanhamentoSolicitacao(@PathVariable Long id){
-        return ResponseEntity.ok("Status atual é: " + contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(id));
+    @GetMapping("/status/{cnpj}")
+    public ResponseEntity acompanhamentoSolicitacao(@PathVariable String cnpj){
+        return ResponseEntity.ok("Status atual é: " + contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(contaPessoaJuridicaService.converteCnpj(cnpj)));
     }
 }

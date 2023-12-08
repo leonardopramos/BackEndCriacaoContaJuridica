@@ -1,8 +1,6 @@
 CREATE TABLE pessoa_juridica (
                                  id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                  cnpj VARCHAR(18) NOT NULL,
-                                 razao_social VARCHAR(255) NOT NULL,
-                                 nome_fantasia VARCHAR(255),
                                  logradouro VARCHAR(255),
                                  numero VARCHAR(10),
                                  complemento VARCHAR(255),
@@ -11,13 +9,11 @@ CREATE TABLE pessoa_juridica (
                                  estado VARCHAR(2),
                                  cep VARCHAR(10),
                                  pais VARCHAR(255),
-                                 telefone VARCHAR(20),
-                                 email VARCHAR(255),
                                  faturamento_mensal DOUBLE,
-                                 ramo_atividade VARCHAR(255),
                                  agencia INT,
                                  numero_conta INT,
                                  status VARCHAR(20),
                                  UNIQUE(cnpj),
+                                 senha VARCHAR(255),
                                  INDEX idx_status (status) USING BTREE
 );

@@ -6,6 +6,7 @@ import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,27 +26,11 @@ public class ContaPessoaJuridica {
     @Column(name = "cnpj")
     private String cnpj;
 
-    @Column(name = "razao_social")
-    private String razaoSocial;
-
-    @Column(name = "nome_fantasia")
-    private String nomeFantasia;
-
     @Embedded
     private Endereco endereco;
 
-    @Column(name = "telefone")
-    private String telefone;
-
-    @Column(name = "email")
-    @Email
-    private String email;
-
     @Column(name = "faturamento_mensal")
     private double faturamentoMensal;
-
-    @Column(name = "ramo_atividade")
-    private String ramoAtividade;
 
     @Column(name = "agencia")
     private int agencia;
@@ -59,5 +44,12 @@ public class ContaPessoaJuridica {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+    private String senha;
+
+    public String retornaStatusConvertido(){
+        if(this.status == Status.EM_ANDAMENTO) return "Em andamento.";
+        if(this.status == Status.APROVADA) return "Aprovada.";
+        return "Cancelada.";
+    }
 }
 

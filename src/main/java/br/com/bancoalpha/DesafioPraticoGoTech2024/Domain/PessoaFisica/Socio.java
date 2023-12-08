@@ -21,6 +21,7 @@ public class Socio {
     private String cpf;
     @Email
     private String email;
+    private String telefone;
     private double percentualParticipacao;
     @ManyToOne
     @JoinColumn(name = "conta_pessoa_juridica_id")
