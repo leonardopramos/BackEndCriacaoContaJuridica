@@ -29,3 +29,35 @@ Este projeto faz parte do processo seletivo para o programa de estágio GoTech. 
 **Contato:** leonardopreczevskiramos@gmail.com
 
 **LinkedIn:** https://www.linkedin.com/in/leonardo-preczevski-733501215/
+
+# GoTech - Backend for Internship Assessment (Unicred and Zallpy) (English Version)
+
+This repository contains the source code for the backend developed as part of the internship assessment for the GoTech program at Unicred and Zallpy companies. The backend was built using a set of modern technologies to ensure the efficiency and quality of the legal entity account creation system.
+
+## Technologies Used
+
+- **Framework:** [Spring Boot](https://spring.io/projects/spring-boot)
+- **Dependency Management:** [Maven](https://maven.apache.org/)
+- **Database:** [MySQL](https://www.mysql.com/)
+- **Database Migration Control:** [Flyway](https://flywaydb.org/)
+- **Data Persistence:** [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+- **Object-Relational Mapping:** [Hibernate](https://hibernate.org/)
+- **Code Enhancement:** [Lombok](https://projectlombok.org/)
+
+## How to Run
+
+1. Clone this repository.
+2. Open the project in your preferred IDE.
+3. Ensure you have a MySQL server configured and accessible.
+4. Configure database properties in the `application.properties` or `application.yml` file.
+5. Run the Spring Boot project.
+
+## Notes
+
+This project is part of the selection process for the GoTech internship program. The backend is responsible for providing the necessary services for frontend operations, ensuring an efficient and secure interaction with the MySQL database.
+
+**Developer:** Leonardo Preczevski Ramos
+
+**Contact:** leonardopreczevskiramos@gmail.com
+
+**LinkedIn:** [LinkedIn Profile](https://www.linkedin.com/in/leonardo-preczevski-733501215/)
