@@ -24,8 +24,7 @@ Este repositório contém o código-fonte do backend desenvolvido como parte da 
 
 Este projeto faz parte do processo seletivo para o programa de estágio GoTech. O backend é responsável por fornecer os serviços necessários para as operações do frontend, garantindo uma interação eficiente e segura com o banco de dados MySQL.
 
-**Desenvolvedor:** [Seu Nome]
+**Desenvolvedor:** Leonardo Preczevski Ramos
 
-**Contato:** [Seu E-mail]
-
-**LinkedIn:** [Seu Perfil do LinkedIn]
+**Contato:** leonardopreczevskiramos@gmail.com
+**LinkedIn:** https://www.linkedin.com/in/leonardo-preczevski-733501215/
