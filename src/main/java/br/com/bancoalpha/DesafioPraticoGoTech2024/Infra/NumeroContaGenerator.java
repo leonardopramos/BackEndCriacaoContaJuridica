@@ -6,9 +6,9 @@ import java.util.Random;
 
 @Component
 public class NumeroContaGenerator {
+    private Random random = new Random();
+    private int numConta = 0;
     public int gerar() {
-        Random random = new Random();
-        int numConta = 0;
         while (numConta == 0) {
             numConta = random.nextInt(10);
         }

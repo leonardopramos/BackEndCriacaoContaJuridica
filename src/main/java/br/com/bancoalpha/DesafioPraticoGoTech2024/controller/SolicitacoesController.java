@@ -17,9 +17,8 @@ public class SolicitacoesController {
     @GetMapping("/aprova/{id}")
     public ResponseEntity aprovaSolicitacao(@PathVariable Long id){
         contaPessoaJuridicaService.aprovaSolicitacao(id);
-        return ResponseEntity.ok("Solicitação Aprovada com sucesso!");
+        return ResponseEntity.ok("Solicitação Aprovada com sucesso.");
     }
-
     @GetMapping("/cancela/{id}")
     public ResponseEntity cancelaSolicitacao(@PathVariable Long id){
         contaPessoaJuridicaService.cancelaSolicitacao(id);
@@ -27,6 +26,6 @@ public class SolicitacoesController {
     }
     @GetMapping("/status/{cnpj}")
     public ResponseEntity acompanhamentoSolicitacao(@PathVariable String cnpj){
-        return ResponseEntity.ok("Status atual é: " + contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(contaPessoaJuridicaService.converteCnpj(cnpj)));
+        return ResponseEntity.ok("Status atual é: " + contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(cnpj));
     }
 }

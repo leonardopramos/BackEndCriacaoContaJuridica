@@ -6,9 +6,9 @@ import java.util.Random;
 
 @Component
 public class AgenciaGenerator {
+    private Random random = new Random();
+    private int numAgencia = 0;
     public int gerar() {
-        Random random = new Random();
-        int numAgencia = 0;
         for (int i = 0; i < 4; i++) {
             numAgencia = numAgencia * 10 + random.nextInt(10);
         }

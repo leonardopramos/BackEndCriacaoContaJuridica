@@ -46,7 +46,6 @@ public class ContaPessoaJuridicaService {
     }
 
     public void persistePessoaJuridica(ContaPessoaJuridica contaPessoaJuridica) {
-        System.out.println(contaPessoaJuridica.toString());
         contaPessoaJuridica.setStatus(Status.EM_ANDAMENTO);
         contaPessoaJuridica.setNumeroConta(numeroContaGenerator.gerar());
         contaPessoaJuridica.setAgencia(agenciaGenerator.gerar());
@@ -57,9 +56,9 @@ public class ContaPessoaJuridicaService {
         repository.save(contaPessoaJuridica);
     }
 
-    public String acompanhamentoStatusSolicitacao(String aux) {
+    public String acompanhamentoStatusSolicitacao(String cnpj) {
+        String aux = converteCnpj(cnpj);
         ContaPessoaJuridica pessoaEncontrada = repository.findBycnpj(aux);
-
         if (pessoaEncontrada!= null) {
             return pessoaEncontrada.retornaStatusConvertido();
         }
