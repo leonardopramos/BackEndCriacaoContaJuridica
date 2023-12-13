@@ -27,4 +27,5 @@ Este projeto faz parte do processo seletivo para o programa de estágio GoTech. 
 **Desenvolvedor:** Leonardo Preczevski Ramos
 
 **Contato:** leonardopreczevskiramos@gmail.com
+
 **LinkedIn:** https://www.linkedin.com/in/leonardo-preczevski-733501215/
