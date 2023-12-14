@@ -18,13 +18,18 @@ public class ContaPessoaJuridicaController {
     SocioService socioService;
 
     @PostMapping("/create/contapessoajuridica")
-    public ResponseEntity createContaPessoaJuridica(@RequestBody ContaPessoaJuridica contaPessoaJuridica){
+    public ResponseEntity<ContaPessoaJuridicaResponseBody> createContaPessoaJuridica(
+            @RequestBody ContaPessoaJuridica contaPessoaJuridica) {
         contaPessoaJuridicaService.persistePessoaJuridica(contaPessoaJuridica);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ContaPessoaJuridicaResponseBody(contaPessoaJuridica));
+        ContaPessoaJuridicaResponseBody responseBody = new ContaPessoaJuridicaResponseBody(contaPessoaJuridica);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
+
     @GetMapping("/login")
-    public ResponseEntity login(@RequestParam String cnpj,String senha){
-        if(contaPessoaJuridicaService.login(cnpj,senha)) return ResponseEntity.ok("Login bem sucedido.");
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
+    public ResponseEntity<String> login(@RequestParam String cnpj, @RequestParam String senha) {
+        boolean loginSucesso = contaPessoaJuridicaService.login(cnpj, senha);
+        return loginSucesso
+                ? ResponseEntity.ok("Login bem sucedido.")
+                : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
     }
 }

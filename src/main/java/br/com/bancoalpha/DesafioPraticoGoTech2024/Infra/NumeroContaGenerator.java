@@ -9,12 +9,12 @@ public class NumeroContaGenerator {
     private Random random = new Random();
     private int numConta = 0;
     public int gerar() {
-        while (numConta == 0) {
-            numConta = random.nextInt(10);
-        }
-        for (int i = 1; i < 9; i++) {
+        int numConta = random.nextInt(9) + 1;
+
+        for (int i = 1; i < 8; i++) {
             numConta = numConta * 10 + random.nextInt(10);
         }
+
         return numConta;
     }
 }

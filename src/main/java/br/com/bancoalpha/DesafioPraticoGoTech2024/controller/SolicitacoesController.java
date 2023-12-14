@@ -26,6 +26,6 @@ public class SolicitacoesController {
     }
     @GetMapping("/status/{cnpj}")
     public ResponseEntity acompanhamentoSolicitacao(@PathVariable String cnpj){
-        return ResponseEntity.ok("Status atual é: " + contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(cnpj));
+        return ResponseEntity.ok(contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(cnpj));
     }
 }

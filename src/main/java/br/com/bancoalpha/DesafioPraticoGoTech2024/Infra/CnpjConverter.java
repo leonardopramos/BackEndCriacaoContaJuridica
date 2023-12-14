@@ -8,6 +8,7 @@ public class CnpjConverter {
         if (cnpj.length() != 14) {
             throw new IllegalArgumentException("CNPJ deve conter exatamente 14 dígitos.");
         }
+
         return String.format("%s.%s.%s/%s-%s",
                 cnpj.substring(0, 2),
                 cnpj.substring(2, 5),
