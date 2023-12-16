@@ -22,7 +22,7 @@ public class ContaPessoaJuridicaController {
             @RequestBody ContaPessoaJuridica contaPessoaJuridica) {
         contaPessoaJuridicaService.persistePessoaJuridica(contaPessoaJuridica);
         ContaPessoaJuridicaResponseBody responseBody = new ContaPessoaJuridicaResponseBody(contaPessoaJuridica);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/login")

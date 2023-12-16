@@ -4,9 +4,7 @@ import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Endereco;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,11 +33,11 @@ public class ContaPessoaJuridica {
     @OneToMany(mappedBy = "contaPessoaJuridica", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Socio> socios = new ArrayList<>();
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
+    @Column(name = "status_solicitacao")
+    private Status solicitacaoStatus;
     private String senha;
     public String retornaStatusConvertido() {
-        return switch (this.status) {
+        return switch (this.solicitacaoStatus) {
             case CANCELADA -> "Cancelada";
             case APROVADA -> "Aprovada.";
             default -> "Em andamento.";

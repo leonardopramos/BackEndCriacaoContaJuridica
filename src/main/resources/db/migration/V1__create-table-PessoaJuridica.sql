@@ -12,8 +12,8 @@ CREATE TABLE pessoa_juridica (
                                  faturamento_mensal DOUBLE,
                                  agencia INT,
                                  numero_conta INT,
-                                 status VARCHAR(20),
+                                 status_solicitacao VARCHAR(20),
                                  UNIQUE(cnpj),
                                  senha VARCHAR(255),
-                                 INDEX idx_status (status) USING BTREE
+                                 INDEX idx_status (status_solicitacao) USING BTREE
 );

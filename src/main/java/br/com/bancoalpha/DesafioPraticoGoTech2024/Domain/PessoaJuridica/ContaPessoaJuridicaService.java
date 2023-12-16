@@ -25,14 +25,14 @@ public class ContaPessoaJuridicaService {
     public void aprovaSolicitacao(Long id) {
         ContaPessoaJuridica contaPessoaJuridica = repository.findById(id)
                 .orElseThrow(() -> new Handler.ContaNaoEncontradaException("Conta não encontrada"));
-        contaPessoaJuridica.setStatus(Status.APROVADA);
+        contaPessoaJuridica.setSolicitacaoStatus(Status.APROVADA);
         repository.save(contaPessoaJuridica);
     }
 
     public void cancelaSolicitacao(Long id) {
         ContaPessoaJuridica contaPessoaJuridica = repository.findById(id)
                 .orElseThrow(() -> new Handler.ContaNaoEncontradaException("Conta não encontrada"));
-        contaPessoaJuridica.setStatus(Status.CANCELADA);
+        contaPessoaJuridica.setSolicitacaoStatus(Status.CANCELADA);
         repository.save(contaPessoaJuridica);
     }
 
@@ -49,8 +49,9 @@ public class ContaPessoaJuridicaService {
     }
 
     public boolean login(String cnpj, String senha) {
+        String cnpjLogin= converteCnpj(cnpj);
         return repository.findAll().stream()
-                .anyMatch(conta -> conta.getCnpj().equals(cnpj) && conta.getSenha().equals(senha));
+                .anyMatch(conta -> conta.getCnpj().equals(cnpjLogin) && conta.getSenha().equals(senha));
     }
 
     public String converteCnpj(String cnpj) {
@@ -58,7 +59,7 @@ public class ContaPessoaJuridicaService {
     }
 
     private void configurarContaPessoaJuridica(ContaPessoaJuridica contaPessoaJuridica) {
-        contaPessoaJuridica.setStatus(Status.EM_ANDAMENTO);
+        contaPessoaJuridica.setSolicitacaoStatus(Status.EM_ANDAMENTO);
         configurarNumeroContaEAgencia(contaPessoaJuridica);
         associarContaAoSocios(contaPessoaJuridica);
     }
