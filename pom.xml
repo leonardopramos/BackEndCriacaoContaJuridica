@@ -65,7 +65,10 @@
 			<version>6.4.0.Final</version>
 			<type>pom</type>
 		</dependency>
-
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
