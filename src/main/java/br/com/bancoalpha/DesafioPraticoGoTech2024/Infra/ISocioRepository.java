@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface ISocioRepository extends JpaRepository<Socio,Long> {
     @Query("SELECT s FROM Socio s WHERE s.contaPessoaJuridica.id = :contaPessoaJuridicaId")
     Optional<Socio> findByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") Long contaPessoaJuridicaId);
+    List<Socio> findAllByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") Long contaPessoaJuridicaId);
+
 }

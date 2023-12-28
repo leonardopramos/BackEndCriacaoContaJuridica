@@ -14,18 +14,20 @@ public class SolicitacoesController {
     @Autowired
     ContaPessoaJuridicaService contaPessoaJuridicaService;
 
-    @GetMapping("/aprova/{id}")
-    public ResponseEntity aprovaSolicitacao(@PathVariable Long id){
-        contaPessoaJuridicaService.aprovaSolicitacao(id);
+    @GetMapping("/aprova/{cnpj}")
+    public ResponseEntity aprovaSolicitacao(@PathVariable String cnpj){
+        contaPessoaJuridicaService.aprovaSolicitacao(cnpj);
         return ResponseEntity.ok("Solicitação Aprovada com sucesso.");
     }
-    @GetMapping("/cancela/{id}")
-    public ResponseEntity cancelaSolicitacao(@PathVariable Long id){
-        contaPessoaJuridicaService.cancelaSolicitacao(id);
+    @GetMapping("/cancela/{cnpj}")
+    public ResponseEntity cancelaSolicitacao(@PathVariable String cnpj){
+        contaPessoaJuridicaService.cancelaSolicitacao(cnpj);
         return ResponseEntity.ok("Solicitação Cancelada.");
     }
     @GetMapping("/status/{cnpj}")
     public ResponseEntity acompanhamentoSolicitacao(@PathVariable String cnpj){
         return ResponseEntity.ok(contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(cnpj));
     }
+
+
 }

@@ -1,14 +1,18 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.controller;
 
+import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.EmailRequest;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.SocioListDTO;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.SocioService;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaResponseBody;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaService;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/alpha")
@@ -33,8 +37,22 @@ public class ContaPessoaJuridicaController {
                 ? ResponseEntity.ok("Login bem sucedido.")
                 : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
     }
-    @GetMapping("/nomeCliente/{cnpj}")
-    public ResponseEntity retornaNomeCliente(@PathVariable String cnpj){
-        return ResponseEntity.ok(contaPessoaJuridicaService.retornaNome(cnpj));
+    @GetMapping("/all")
+    public List<ContaPessoaJuridica> listarContasPessoaJuridica() {
+        return contaPessoaJuridicaService.listarContasPessoaJuridica();
     }
+    @PostMapping("/sendEmail/{cnpj}")
+    public String sendEmail(@RequestBody EmailRequest emailRequest, @PathVariable String cnpj){
+        return contaPessoaJuridicaService.sendEmail(emailRequest, cnpj);
+    }
+    @PostMapping("/addsocio/{cnpj}")
+    public ResponseEntity createContaPessoaJuridica(@PathVariable String cnpj, @RequestBody Socio socio) throws Exception {
+        socioService.adicionaNovoSocio(socio, cnpj);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    @GetMapping("/users/{cnpj}")
+    public List<Socio> userSelector(@PathVariable String cnpj) {
+        return contaPessoaJuridicaService.listUsers(cnpj);
+    }
+
 }

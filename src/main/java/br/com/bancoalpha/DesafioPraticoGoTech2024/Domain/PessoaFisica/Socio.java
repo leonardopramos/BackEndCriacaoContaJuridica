@@ -1,6 +1,7 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica;
 
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,6 @@ public class Socio {
     private double percentualParticipacao;
     @ManyToOne
     @JoinColumn(name = "conta_pessoa_juridica_id")
+    @JsonBackReference
     private ContaPessoaJuridica contaPessoaJuridica;
 }

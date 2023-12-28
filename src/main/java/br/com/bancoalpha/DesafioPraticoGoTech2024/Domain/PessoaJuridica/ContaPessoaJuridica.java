@@ -3,6 +3,8 @@ package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Endereco;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +33,7 @@ public class ContaPessoaJuridica {
     @Column(name = "numero_conta")
     private int numeroConta;
     @OneToMany(mappedBy = "contaPessoaJuridica", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Socio> socios = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     @Column(name = "status_solicitacao")
