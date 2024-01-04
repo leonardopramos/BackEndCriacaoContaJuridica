@@ -3,7 +3,6 @@ package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Endereco;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,16 +11,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "pessoa_juridica")
+@Table(name = "contas_pj")
 public class ContaPessoaJuridica {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id@Column(name = "id", length = 36)
+    private String id;
     @Column(name = "cnpj")
     private String cnpj;
     @Embedded

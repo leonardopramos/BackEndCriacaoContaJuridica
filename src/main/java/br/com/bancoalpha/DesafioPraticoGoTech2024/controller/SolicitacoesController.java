@@ -1,6 +1,7 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.controller;
 
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaService;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,17 @@ public class SolicitacoesController {
     ContaPessoaJuridicaService contaPessoaJuridicaService;
 
     @GetMapping("/aprova/{cnpj}")
-    public ResponseEntity aprovaSolicitacao(@PathVariable String cnpj){
+    public ResponseEntity<String> aprovaSolicitacao(@PathVariable String cnpj) {
         contaPessoaJuridicaService.aprovaSolicitacao(cnpj);
-        return ResponseEntity.ok("Solicitação Aprovada com sucesso.");
+        return ResponseEntity.ok("Solicitação aprovada com sucesso.");
     }
+
     @GetMapping("/cancela/{cnpj}")
-    public ResponseEntity cancelaSolicitacao(@PathVariable String cnpj){
+    public ResponseEntity<String> cancelaSolicitacao(@PathVariable String cnpj) {
         contaPessoaJuridicaService.cancelaSolicitacao(cnpj);
-        return ResponseEntity.ok("Solicitação Cancelada.");
+        return ResponseEntity.ok("Solicitação cancelada.");
     }
+
     @GetMapping("/status/{cnpj}")
     public ResponseEntity acompanhamentoSolicitacao(@PathVariable String cnpj){
         return ResponseEntity.ok(contaPessoaJuridicaService.acompanhamentoStatusSolicitacao(cnpj));

@@ -7,10 +7,11 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface ISocioRepository extends JpaRepository<Socio,Long> {
     @Query("SELECT s FROM Socio s WHERE s.contaPessoaJuridica.id = :contaPessoaJuridicaId")
-    Optional<Socio> findByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") Long contaPessoaJuridicaId);
-    List<Socio> findAllByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") Long contaPessoaJuridicaId);
+    Optional<Socio> findByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") String contaPessoaJuridicaId);
+    List<Socio> findAllByContaPessoaJuridicaId(@Param("contaPessoaJuridicaId") String contaPessoaJuridicaId);
 
 }

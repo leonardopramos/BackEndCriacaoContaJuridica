@@ -9,14 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "Socios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Socio {
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id@Column(name = "id", length = 36)
+    private String id;
     private String nome;
     @CPF
     private String cpf;

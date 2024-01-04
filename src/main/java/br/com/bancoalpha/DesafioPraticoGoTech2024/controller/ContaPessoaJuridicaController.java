@@ -2,7 +2,6 @@ package br.com.bancoalpha.DesafioPraticoGoTech2024.controller;
 
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.EmailRequest;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.SocioListDTO;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.SocioService;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaResponseBody;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaService;
@@ -22,12 +21,12 @@ public class ContaPessoaJuridicaController {
     @Autowired
     SocioService socioService;
 
-    @PostMapping("/create/contapessoajuridica")
+    @PostMapping("/create")
     public ResponseEntity<ContaPessoaJuridicaResponseBody> createContaPessoaJuridica(
             @RequestBody ContaPessoaJuridica contaPessoaJuridica) {
         contaPessoaJuridicaService.persistePessoaJuridica(contaPessoaJuridica);
         ContaPessoaJuridicaResponseBody responseBody = new ContaPessoaJuridicaResponseBody(contaPessoaJuridica);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
 
     @GetMapping("/login")
@@ -37,22 +36,25 @@ public class ContaPessoaJuridicaController {
                 ? ResponseEntity.ok("Login bem sucedido.")
                 : ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
     }
+
     @GetMapping("/all")
     public List<ContaPessoaJuridica> listarContasPessoaJuridica() {
         return contaPessoaJuridicaService.listarContasPessoaJuridica();
     }
+
     @PostMapping("/sendEmail/{cnpj}")
     public String sendEmail(@RequestBody EmailRequest emailRequest, @PathVariable String cnpj){
-        return contaPessoaJuridicaService.sendEmail(emailRequest, cnpj);
+        return contaPessoaJuridicaService.enviarEmail(emailRequest, cnpj);
     }
+
     @PostMapping("/addsocio/{cnpj}")
-    public ResponseEntity createContaPessoaJuridica(@PathVariable String cnpj, @RequestBody Socio socio) throws Exception {
+    public ResponseEntity<Void> createSocio(@PathVariable String cnpj, @RequestBody Socio socio) throws Exception {
         socioService.adicionaNovoSocio(socio, cnpj);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     @GetMapping("/users/{cnpj}")
-    public List<Socio> userSelector(@PathVariable String cnpj) {
+    public List<Socio> listUsers(@PathVariable String cnpj) {
         return contaPessoaJuridicaService.listUsers(cnpj);
     }
-
 }

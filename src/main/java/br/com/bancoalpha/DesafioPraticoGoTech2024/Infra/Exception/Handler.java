@@ -7,18 +7,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class Handler {
-    @ExceptionHandler(ContaNaoEncontradaException.class)
-    public ResponseEntity<String> handleContaNaoEncontradaException(ContaNaoEncontradaException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-    }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGenericException(Exception e) {
-        return new ResponseEntity<>("Ocorreu um erro interno no servidor.", HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<String> handleRuntimeException(RuntimeException e) {
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        if (e instanceof ContaNaoEncontradaException) {
+            status = HttpStatus.NOT_FOUND;
+        } else if (e instanceof PercentualParticipacaoInvalidoException) {
+            status = HttpStatus.BAD_REQUEST;
+        }
+
+        return new ResponseEntity<>(e.getMessage(), status);
     }
 
     public static class ContaNaoEncontradaException extends RuntimeException {
         public ContaNaoEncontradaException(String mensagem) {
+            super(mensagem);
+        }
+    }
+
+    public static class PercentualParticipacaoInvalidoException extends RuntimeException {
+        public PercentualParticipacaoInvalidoException(String mensagem) {
             super(mensagem);
         }
     }
