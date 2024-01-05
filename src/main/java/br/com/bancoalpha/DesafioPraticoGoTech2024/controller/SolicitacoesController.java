@@ -1,7 +1,6 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.controller;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaService;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.service.ContaPessoaJuridicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

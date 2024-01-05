@@ -1,11 +1,11 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.controller;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.EmailRequest;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.SocioService;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaResponseBody;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridicaService;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.EmailRequest;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica.Socio;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.service.SocioService;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridicaDTO;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.service.ContaPessoaJuridicaService;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +22,10 @@ public class ContaPessoaJuridicaController {
     SocioService socioService;
 
     @PostMapping("/create")
-    public ResponseEntity<ContaPessoaJuridicaResponseBody> createContaPessoaJuridica(
+    public ResponseEntity<ContaPessoaJuridicaDTO> createContaPessoaJuridica(
             @RequestBody ContaPessoaJuridica contaPessoaJuridica) {
         contaPessoaJuridicaService.persistePessoaJuridica(contaPessoaJuridica);
-        ContaPessoaJuridicaResponseBody responseBody = new ContaPessoaJuridicaResponseBody(contaPessoaJuridica);
+        ContaPessoaJuridicaDTO responseBody = new ContaPessoaJuridicaDTO(contaPessoaJuridica);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
     }
 

@@ -1,8 +1,6 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Endereco;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica.Socio;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor

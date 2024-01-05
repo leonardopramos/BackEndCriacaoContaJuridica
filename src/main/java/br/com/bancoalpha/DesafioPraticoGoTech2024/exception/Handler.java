@@ -1,4 +1,4 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.Exception;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

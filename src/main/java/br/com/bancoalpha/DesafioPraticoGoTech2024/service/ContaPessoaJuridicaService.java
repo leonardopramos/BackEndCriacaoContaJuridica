@@ -1,14 +1,15 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.service;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.EmailRequest;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.Exception.Handler;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.ISocioRepository;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica.Socio;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.Status;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.AgenciaGenerator;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.CnpjConverter;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.IContaPessoaJuridicaRepository;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.NumeroContaGenerator;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.EmailRequest;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.exception.Handler;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.ISocioRepository;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica.Socio;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.Status;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.IContaPessoaJuridicaRepository;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.util.AgenciaGenerator;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.util.CnpjConverter;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.util.NumeroContaGenerator;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -110,7 +111,7 @@ public class ContaPessoaJuridicaService {
                 });
     }
 
-    private ContaPessoaJuridica findByCnpj(String cnpj) {
+    protected ContaPessoaJuridica findByCnpj(String cnpj) {
         String cnpjFormatado = converteCnpj(cnpj);
         return repository.findBycnpj(cnpjFormatado);
     }

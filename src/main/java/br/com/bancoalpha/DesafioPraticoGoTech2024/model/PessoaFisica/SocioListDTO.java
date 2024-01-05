@@ -1,6 +1,4 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica;
-
-import java.util.UUID;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica;
 
 public record SocioListDTO(
         String id,

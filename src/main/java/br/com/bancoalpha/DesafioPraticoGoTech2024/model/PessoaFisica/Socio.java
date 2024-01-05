@@ -1,6 +1,6 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "Socios")

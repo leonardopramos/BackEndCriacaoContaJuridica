@@ -1,4 +1,4 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Infra;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.util;
 
 import org.springframework.stereotype.Component;
 

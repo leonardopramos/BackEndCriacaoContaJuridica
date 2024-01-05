@@ -1,11 +1,10 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Infra;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.repository;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public interface IContaPessoaJuridicaRepository extends JpaRepository<ContaPessoaJuridica, Long> {
     ContaPessoaJuridica findBycnpj(String cnpj);

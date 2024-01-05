@@ -1,4 +1,4 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Infra;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

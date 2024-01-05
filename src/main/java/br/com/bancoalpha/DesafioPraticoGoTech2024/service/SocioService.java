@@ -1,10 +1,11 @@
-package br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaFisica;
+package br.com.bancoalpha.DesafioPraticoGoTech2024.service;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Domain.PessoaJuridica.ContaPessoaJuridica;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.CnpjConverter;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.Exception.Handler;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.IContaPessoaJuridicaRepository;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.Infra.ISocioRepository;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica.Socio;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.exception.Handler;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.IContaPessoaJuridicaRepository;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.ISocioRepository;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.util.CnpjConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,20 +43,7 @@ public class SocioService {
         }
     }
 
-
-    private void validarPercentualParticipacao(Socio socio, ContaPessoaJuridica conta) {
-        double percentualAtualDaConta = repository
-                .findAll()
-                .stream()
-                .filter(s -> s.getContaPessoaJuridica().getId().equals(socio.getContaPessoaJuridica().getId()))
-                .mapToDouble(Socio::getPercentualParticipacao)
-                .sum();
-
-        if ((socio.getPercentualParticipacao() + percentualAtualDaConta) > 100) {
-            throw new Handler.PercentualParticipacaoInvalidoException("Percentual inválido, tente novamente.");
-        }
-    }
-    private String gerarUUID() {
+    protected String gerarUUID() {
         UUID randomUUID = UUID.randomUUID();
         return randomUUID.toString();
     }
