@@ -1,11 +1,10 @@
 package br.com.bancoalpha.DesafioPraticoGoTech2024.service;
 
-import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.EmailRequest;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.*;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.exception.Handler;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.ContaPessoaJuridica;
+import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.IAtividadesRepository;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.ISocioRepository;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaFisica.Socio;
-import br.com.bancoalpha.DesafioPraticoGoTech2024.model.PessoaJuridica.Status;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.repository.IContaPessoaJuridicaRepository;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.util.AgenciaGenerator;
 import br.com.bancoalpha.DesafioPraticoGoTech2024.util.CnpjConverter;
@@ -35,6 +34,8 @@ public class ContaPessoaJuridicaService {
     private CnpjConverter cnpjConverter;
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private IAtividadesRepository atividadesRepository;
 
 
     public void aprovaSolicitacao(String cnpj) {
@@ -84,9 +85,8 @@ public class ContaPessoaJuridicaService {
         contaPessoaJuridica.setSolicitacaoStatus(Status.EM_ANDAMENTO);
         hashSenha(contaPessoaJuridica);
         configurarNumeroContaEAgencia(contaPessoaJuridica);
-        associarContaAoSocios(contaPessoaJuridica);
+        associarSociosEAtividadesAConta(contaPessoaJuridica);
     }
-
     private void hashSenha(ContaPessoaJuridica contaPessoaJuridica) {
         String salt = BCrypt.gensalt();
         String hashSenha = BCrypt.hashpw(contaPessoaJuridica.getSenha(), salt);
@@ -103,11 +103,15 @@ public class ContaPessoaJuridicaService {
         contaPessoaJuridica.setAgencia(agenciaGenerator.gerar());
     }
 
-    private void associarContaAoSocios(ContaPessoaJuridica contaPessoaJuridica) {
+    private void associarSociosEAtividadesAConta(ContaPessoaJuridica contaPessoaJuridica) {
         contaPessoaJuridica.getSocios()
                 .forEach(socio -> {
                     socio.setId(gerarUUID());
                     socio.setContaPessoaJuridica(contaPessoaJuridica);
+                });
+        contaPessoaJuridica.getAtividades()
+                .forEach(at -> {
+                    at.setContaPessoaJuridica(contaPessoaJuridica);
                 });
     }
 

@@ -23,6 +23,7 @@ public class Socio {
     @Email
     private String email;
     private String telefone;
+    @Column(name = "percentual_participacao")
     private double percentualParticipacao;
     @ManyToOne
     @JoinColumn(name = "conta_pessoa_juridica_id")
